@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HeaderComponents } from "./HeaderStyled";
 import { NavBarProps } from "../../types";
-import { logoEscrita } from "../assets";
+import { logoEscrita } from "../../assets";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { logoEscritaPreta } from "../assets";
+import { logoEscritaPreta } from "../../assets";
 import { FooterStyle } from "./FooterStyle";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
