@@ -66,4 +66,21 @@ export const FooterStyle = styled.footer`
       justify-content: space-between;
     }
   }
+
+  @media (max-width: 960px) {
+    .text_container {
+      .list_itens {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  @media (max-width: 360px) {
+    .copyright {
+      .icons {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 `;

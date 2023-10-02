@@ -23,7 +23,7 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="copyright">
-          <p>© 2023 DevRise. Todos os direitos conservados.</p>
+          <p>© 2023 DevRise. Todos os direitos reservados.</p>
           <div className="icons">
             <LinkedInIcon />
             <AlternateEmailIcon />
