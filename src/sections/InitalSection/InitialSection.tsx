@@ -1,6 +1,6 @@
 import React from "react";
 import { ContainerInitialSection } from "./InitialSectionStyle";
-import { background } from "../../assets";
+import { background } from "../../components/assets";
 
 export const InitialSection = () => {
     return (
