@@ -12,10 +12,10 @@ export const ContainerInitialSection = styled.section`
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding-left: 30px;
+        padding-left: 4.5rem;
 
         h1 {
-            width: 25%;
+            width: 30%;
             color: #FFF;
             font-size: 30px;
             font-style: normal;
@@ -29,7 +29,7 @@ export const ContainerInitialSection = styled.section`
     }
 
     .image-container{
-        height: 80%;
+        height: 100%;
 
         img {
             width: 100%;
@@ -38,7 +38,7 @@ export const ContainerInitialSection = styled.section`
     }
 
     @media (max-width: 768px) {
-        justify-content: space-evenly;
+        justify-content: space-between;
         .title {
             padding-left: 0;
 
@@ -48,7 +48,7 @@ export const ContainerInitialSection = styled.section`
         }
 
         .image-container{
-            height: 50%;
+            height: 70%;
         }
     }
 `
