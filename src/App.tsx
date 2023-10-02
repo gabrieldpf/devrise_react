@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Footer, Header } from './components';
-import { InitialSection, WhoAreSection } from './sections';
+import { InitialSection, OursProductsSection, WhoAreSection } from './sections';
+
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <InitialSection />
       <WhoAreSection />
+      <OursProductsSection />
       <Footer />
     </div>
   );
