@@ -153,4 +153,27 @@ export const HeaderComponents = styled.header`
       }
     }
   }
+  .elemento {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .clicked {
+    color: #fff;
+    position: relative;
+    line-height: 2rem; /*
+    transition: linear 0.5s; */
+  }
+
+  .clicked::after {
+    color: #fff;
+    content: "";
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+  }
 `;
