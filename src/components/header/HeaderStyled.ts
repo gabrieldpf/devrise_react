@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const HeaderComponents = styled.header`
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 10px;
+  padding: 8px 25px;
   background-color: black;
   color: #fff;
   font-family: "Nunito", sans-serif;

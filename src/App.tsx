@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Footer, Header } from './components';
-import { InitialSection, OursProductsSection, WhoAreSection } from './sections';
+import { ContactSection, InitialSection, OursProductsSection, WhoAreSection } from './sections';
 
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
       <InitialSection />
       <WhoAreSection />
       <OursProductsSection />
+      <ContactSection />
       <Footer />
     </div>
   );
