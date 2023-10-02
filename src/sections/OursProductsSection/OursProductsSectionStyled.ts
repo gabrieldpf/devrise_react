@@ -1,11 +1,10 @@
 import styled from "styled-components"
 
-export const WhoAreSectionContainer = styled.section`
+export const OursProductsContainer = styled.section`
     color: #fff;
     font-family: "Nunito";
-    height: auto;
+    height: 100%;
     width: 100%;
-    min-height: 60%;
     display: flex;
     flex-direction: column;
     background-color: #000;
@@ -32,6 +31,7 @@ export const WhoAreSectionContainer = styled.section`
         }
 
     }
+
     .content {
         width: 90%;
         display: flex;
@@ -55,10 +55,36 @@ export const WhoAreSectionContainer = styled.section`
         }
     }
 
-    @media (max-width: 768px) {
-        .content {
+    .products {
+        width: 90%;
+        height: 65%;
+        overflow-y: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2rem;
+        flex-direction: column;
+
+        .list_products {
+            width: 100%;
+            display: flex;
+            padding: 8px;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            border: 3px solid #FFF;
+
             p {
+                color: #FFF;
                 font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 89.5%; /* 28.64px */
+                letter-spacing: -0.64px;
+            }
+
+            .icons_arrow {
+                font-size: 32px;
             }
         }
     }
