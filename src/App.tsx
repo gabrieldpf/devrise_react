@@ -1,12 +1,14 @@
-import React from "react";
-import "./App.css";
-import { Footer } from "./components"
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { Footer, Header } from './components';
 
 function App() {
   return (
-    <>
-    <Footer/>
-    </>
+    <div className="App">
+      <Header />
+      <Footer />
+    </div>
   );
 }
 
