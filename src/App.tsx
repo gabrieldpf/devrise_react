@@ -46,13 +46,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <InitialSection />
+      <InitialSection id="inicio"/>
       <FadeInSection>
-        <div className="box">
-          <WhoAreSection />
-          <OursProductsSection />
-          <ContactSection />
-        </div>
+          <WhoAreSection id="quem_somos"/>
+          <OursProductsSection id="produtos"/>
+          <ContactSection id="contato"/>
       </FadeInSection>
 
       <Footer />

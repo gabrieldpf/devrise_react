@@ -15,22 +15,30 @@ export const Header = ({ ...props }: NavBarProps) => {
     setIsIconRotated(!isIconRotated);
   };
 
-  const pages = ["início", "quem somos", "produtos", "contato"];
+  const pages = [
+    { text: "início", url: "#inicio" },
+    { text: "quem somos", url: "#quem_somos" },
+    { text: "produtos", url: "#produtos" },
+    { text: "contato", url: "#contato" },
+  ];
 
   return (
     <HeaderComponents>
       <img src={logoEscrita} alt="" />
       <nav>
         <ul>
-            {pages && pages.map((p, idx) => {
-                return (
-                    <li
-                        className={`element ${isActive === idx ? "clicked" : ""}`}
-                        onClick={() => setIsActive(idx)}
-                    >
-                        {p}
-                    </li>
-                )
+          {pages &&
+            pages.map((p, idx) => {
+              return (
+                <a href={p.url}>
+                <li
+                  className={`element ${isActive === idx ? "clicked" : ""}`}
+                  onClick={() => setIsActive(idx)}
+                  >
+                  {p.text}
+                </li>
+                  </a>
+              );
             })}
         </ul>
       </nav>

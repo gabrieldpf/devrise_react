@@ -64,6 +64,11 @@ export const FooterStyle = styled.footer`
       color: #98a2b3;
       display: flex;
       justify-content: space-between;
+
+      a {
+        text-decoration: none;
+        color: #98a2b3;
+      }
     }
   }
 
