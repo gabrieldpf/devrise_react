@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HeaderComponents } from "./HeaderStyled";
 import { NavBarProps } from "../../types";
-import { logo, logoEscrita } from "../assets";
+import { logo, logoEscrita, apple_icon, google_icon } from "../assets";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { DynamicModal } from "../dynamic-modal/DynamicModal";
@@ -35,15 +35,25 @@ export const Header = ({ ...props }: NavBarProps) => {
       >
         <div className="modal">
           <div className="logo-icon">
-            <ArrowBackOutlinedIcon className="left" onClick={() => setOpenLoginModal(false)} />
+            <ArrowBackOutlinedIcon
+              className="left"
+              onClick={() => setOpenLoginModal(false)}
+            />
             <img src={logo} alt="" className="icon" />
           </div>
           <div className="enter">
             <p>Entrar</p>
           </div>
           <div className="text-modal">
-            <button>Entrar com o Google</button>
-            <button>Entrar com a Apple </button>
+            <button>
+              <img src={google_icon} alt="" />
+              Entrar com o Google
+            </button>
+            <button>
+              {" "}
+              <img src={apple_icon} alt="" />
+              Entrar com a Apple{" "}
+            </button>
           </div>
           <div className="or">ou</div>
           <div className="inputs">
@@ -82,13 +92,13 @@ export const Header = ({ ...props }: NavBarProps) => {
             pages.map((p, idx) => {
               return (
                 <a href={p.url}>
-                <li
-                  className={`element ${isActive === idx ? "clicked" : ""}`}
-                  onClick={() => setIsActive(idx)}
+                  <li
+                    className={`element ${isActive === idx ? "clicked" : ""}`}
+                    onClick={() => setIsActive(idx)}
                   >
-                  {p.text}
-                </li>
-                  </a>
+                    {p.text}
+                  </li>
+                </a>
               );
             })}
         </ul>

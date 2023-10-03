@@ -223,6 +223,10 @@ export const HeaderComponents = styled.header`
       gap: 1rem;
       flex-shrink: 0;
       button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
         width: 50%;
         height: 35px;
         border-radius: 20px;
@@ -235,6 +239,10 @@ export const HeaderComponents = styled.header`
         font-weight: 700;
         letter-spacing: 0.25px;
         cursor: pointer;
+
+        img {
+          width: 8%;
+        }
       }
     }
     .or {
@@ -269,12 +277,18 @@ export const HeaderComponents = styled.header`
       justify-content: center;
       align-items: center;
       input {
+        border: 1px solid #777;
         width: 53%;
         height: 50px;
         border-radius: 8px;
         font-family: "Nunito", sans-serif;
         padding-left: 5px;
         font-size: 15px;
+
+        &:focus {
+          outline: none;
+          border: 2px solid #777;
+        }
       }
     }
     .buttons {
@@ -286,8 +300,8 @@ export const HeaderComponents = styled.header`
       align-items: center;
       gap: 1rem;
       flex-shrink: 0;
-      cursor: pointer;
       .next {
+        cursor: pointer;
         width: 50%;
         height: 35px;
         border-radius: 20px;
@@ -303,6 +317,7 @@ export const HeaderComponents = styled.header`
       .forgot {
         width: 50%;
         height: 35px;
+        cursor: pointer;
         border-radius: 20px;
         border: 1px solid #2b2d33;
         background: #fff;
