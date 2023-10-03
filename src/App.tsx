@@ -43,6 +43,7 @@ export function FadeInSection(props: FadeInSectionProps) {
 }
 
 function App() {
+
   return (
     <div className="App">
       <Header />

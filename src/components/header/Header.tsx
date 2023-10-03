@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { HeaderComponents } from "./HeaderStyled";
 import { NavBarProps } from "../../types";
-import { logoEscrita } from "../assets";
+import { logo, logoEscrita } from "../assets";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { DynamicModal } from "../dynamic-modal/DynamicModal";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 export const Header = ({ ...props }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isIconRotated, setIsIconRotated] = useState(false);
-  const [isActive, setIsActive] = useState(1);
+  const [isActive, setIsActive] = useState(0);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -24,6 +28,53 @@ export const Header = ({ ...props }: NavBarProps) => {
 
   return (
     <HeaderComponents>
+      <DynamicModal
+        open={openLoginModal}
+        onClose={() => setOpenLoginModal(false)}
+        variant="customized"
+      >
+        <div className="modal">
+          <div className="logo-icon">
+            <ArrowBackOutlinedIcon className="left" onClick={() => setOpenLoginModal(false)} />
+            <img src={logo} alt="" className="icon" />
+          </div>
+          <div className="enter">
+            <p>Entrar</p>
+          </div>
+          <div className="text-modal">
+            <button>Entrar com o Google</button>
+            <button>Entrar com a Apple </button>
+          </div>
+          <div className="or">ou</div>
+          <div className="inputs">
+            <input type="text" placeholder="Telefone ou e-mail" />
+            <input type="password" placeholder="Sua senha" />
+          </div>
+          <div className="buttons">
+            <button className="next">Proximo</button>
+            <button className="forgot">Esqueceu a senha?</button>
+          </div>
+          <div className="sign-up">
+            <p>
+              Não tem uma conta?
+              <span
+                onClick={() => {
+                  setOpenLoginModal(false);
+                  setOpenSignUpModal(true);
+                }}
+              >
+                Cadastre-se!
+              </span>
+            </p>
+          </div>
+        </div>
+      </DynamicModal>
+
+      <DynamicModal
+        open={openSignUpModal}
+        onClose={() => setOpenSignUpModal(false)}
+        variant="customized"
+      ></DynamicModal>
       <img src={logoEscrita} alt="" />
       <nav>
         <ul>
@@ -43,8 +94,12 @@ export const Header = ({ ...props }: NavBarProps) => {
         </ul>
       </nav>
       <div className="button-container">
-        <button className="login">login</button>
-        <button className="cadastro">cadastro</button>
+        <button className="login" onClick={() => setOpenLoginModal(true)}>
+          login
+        </button>
+        <button className="cadastro" onClick={() => setOpenSignUpModal(true)}>
+          cadastro
+        </button>
       </div>
       <div className="person-area">
         <div className="icons" onClick={toggleDropdown}>
