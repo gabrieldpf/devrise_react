@@ -13,14 +13,24 @@ export const ContactSectionContainer = styled.section`
     gap: 3rem;
 
     .image_container {
-        width: 35%;
+        padding: 4rem;
+        width: 100%;
         height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
-            width: 100%;
-            height: 100%;
+            width: 35%;
+            transition: transform 1s;
+        }
+
+        &:hover img {
+            transform: rotateY(180deg);
         }
     }
+
 
     .content{
         width: 100%;
@@ -124,6 +134,25 @@ export const ContactSectionContainer = styled.section`
                     width: 80%;
                     font-weight: 600;
                 }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        .image_container {
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .contacts {
+            flex-direction: column;
+            gap: 2rem;
+
+            .section {
+                padding-bottom: 20px;
             }
         }
     }

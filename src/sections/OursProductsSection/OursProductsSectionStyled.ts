@@ -88,4 +88,34 @@ export const OursProductsContainer = styled.section`
             }
         }
     }
+
+    @media (max-width: 768px) {
+        .title {
+            h1 {
+                font-size: 28px;
+            }
+
+        }
+
+        .content {
+            p {
+                font-size: 18px;
+            }
+        }
+
+        .products {
+
+            .list_products {
+                padding: 4px;
+
+                p {
+                    font-size: 16px;
+                }
+
+                .icons_arrow {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
 `;
