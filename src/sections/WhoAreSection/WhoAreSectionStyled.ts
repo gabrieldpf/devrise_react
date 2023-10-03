@@ -58,7 +58,7 @@ export const WhoAreSectionContainer = styled.section`
     @media (max-width: 768px) {
         .content {
             p {
-                font-size: 20px;
+                font-size: 18px;
             }
         }
     }

@@ -43,12 +43,13 @@ export const ContainerInitialSection = styled.section`
             padding-left: 0;
 
             h1 {
+                font-size: 24px;
                 width: 100%;
             }
         }
 
         .image-container{
-            height: 70%;
+            height: 100%;
         }
     }
 `
