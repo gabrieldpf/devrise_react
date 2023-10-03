@@ -21,6 +21,11 @@ export const HeaderComponents = styled.header`
     justify-content: center;
     gap: 1.5rem;
 
+    a {
+      list-style: none;
+      text-decoration: none;
+    }
+
     li {
       list-style: none;
       cursor: pointer;

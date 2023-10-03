@@ -1,9 +1,10 @@
 import React from "react";
 import { WhoAreSectionContainer } from "./WhoAreSectionStyled";
+import { SectionProps } from "../../types/sectionProps";
 
-export const WhoAreSection = () => {
+export const WhoAreSection = ({...props}: SectionProps) => {
     return (
-        <WhoAreSectionContainer>
+        <WhoAreSectionContainer id={props.id}>
             <div className="title">
                 <h1><b>quem </b>somos?</h1>
             </div>

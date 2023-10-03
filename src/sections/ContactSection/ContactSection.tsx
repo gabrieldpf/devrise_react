@@ -2,10 +2,11 @@ import React from "react";
 import { ContactSectionContainer } from "./ContactSectionStyled";
 import { background2 } from "../../components/assets";
 import { ContactJson } from "./data";
+import { SectionProps } from "../../types/sectionProps";
 
-export const ContactSection = () => {
+export const ContactSection = ({...props}: SectionProps) => {
     return (
-        <ContactSectionContainer>
+        <ContactSectionContainer id={props.id}>
             <div className="image_container">
                 <img src={background2} alt="" />
             </div>

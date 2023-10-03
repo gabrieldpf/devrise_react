@@ -2,10 +2,11 @@ import React from "react";
 import { OursProductsContainer } from "./OursProductsSectionStyled";
 import { DataJson } from "./OursProductsController";
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import { SectionProps } from "../../types/sectionProps";
 
-export const OursProductsSection = () => {
+export const OursProductsSection = ({...props}: SectionProps) => {
     return (
-        <OursProductsContainer>
+        <OursProductsContainer id={props.id}>
             <div className="title">
                 <h1><b>nossos </b>produtos</h1>
             </div>

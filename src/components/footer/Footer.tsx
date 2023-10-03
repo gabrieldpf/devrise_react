@@ -25,10 +25,10 @@ export const Footer = () => {
         <div className="copyright">
           <p>© 2023 DevRise. Todos os direitos conservados.</p>
           <div className="icons">
-            <LinkedInIcon />
+            <a href="https://www.linkedin.com/company/92837632/admin/feed/posts/" target="blank"><LinkedInIcon /></a>
             <AlternateEmailIcon />
-            <InstagramIcon />
-            <GitHubIcon />
+            <a href="https://www.instagram.com/devrisecompany/" target="blank"><InstagramIcon /></a>
+            <a href="https://github.com/DevRiseCo" target="blank"><GitHubIcon /></a>
           </div>
         </div>
       </div>
