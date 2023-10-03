@@ -5,6 +5,25 @@
   font-family: "Nunito",  sans-serif;
   background-color: black;
 }
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(50vh);
+  visibility: hidden;
+  transition: opacity 2400ms ease-out, transform 1200ms ease-out, visibility 2400ms ease-out;
+  /* will-change: opacity, transform, visibility; */
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+.box {
+  background-color: transparent;
+}
+
 html,
 body,
 #root {
