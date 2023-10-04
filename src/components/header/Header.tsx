@@ -14,6 +14,7 @@ export const Header = ({ ...props }: NavBarProps) => {
   const [isActive, setIsActive] = useState(0);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
+  const [openCodeVModal, setOpenCodeVModal] = useState(false);
 
   const years = Array.from({ length: 101 }, (_, i) => 1923 + i);
 
@@ -91,7 +92,7 @@ export const Header = ({ ...props }: NavBarProps) => {
           <div className="logo-icon">
             <ArrowBackOutlinedIcon
               className="left"
-              onClick={() => setOpenLoginModal(false)}
+              onClick={() => setOpenSignUpModal(false)}
             />
             <img src={logo} alt="" className="icon" />
           </div>
@@ -158,7 +159,15 @@ export const Header = ({ ...props }: NavBarProps) => {
             </div>
           </div>
           <div className="button">
-            <button className="advance">Avançar</button>
+            <button
+              className="advance"
+              onClick={() => {
+                setOpenSignUpModal(false);
+                setOpenCodeVModal(true);
+              }}
+            >
+              Avançar
+            </button>
           </div>
           <div className="sign-up-text">
             <p>
@@ -172,6 +181,53 @@ export const Header = ({ ...props }: NavBarProps) => {
                 Entre!
               </span>
             </p>
+          </div>
+        </div>
+      </DynamicModal>
+      <DynamicModal
+        open={openCodeVModal}
+        onClose={() => setOpenCodeVModal(false)}
+        variant="customized"
+      >
+        <div className="modal-code">
+          <div className="logo-icon">
+            <ArrowBackOutlinedIcon
+              className="left"
+              onClick={() => {
+                setOpenCodeVModal(false);
+                setOpenSignUpModal(true);
+              }}
+            />
+            <img src={logo} alt="" className="icon" />
+          </div>
+          <div className="code-text">
+            <h1>Enviamos um código para você</h1>
+            <p>
+              Insira-o abaixo o código de verificação para confirmar seu número
+              de telefone.
+            </p>
+          </div>
+          <div className="input-code">
+            <InputMask
+              mask="9 9 9 9 9"
+              placeholder="_ _ _ _ _"
+              id="codev"
+              name="telefone"
+              type="tel"
+            />
+            <p>
+              Não recebeu <span>SMS?</span>
+            </p>
+          </div>
+          <div className="adv-button">
+            <button
+              className="advance"
+              onClick={() => {
+                setOpenCodeVModal(false);
+              }}
+            >
+              Avançar
+            </button>
           </div>
         </div>
       </DynamicModal>

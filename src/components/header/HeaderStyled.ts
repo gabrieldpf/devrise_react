@@ -483,4 +483,70 @@ export const HeaderComponents = styled.header`
     justify-content: center;
     width: 100%;
   }
+  .modal-code {
+    padding: 24px;
+    width: 100%;
+    color: #0d0d0d;
+    .logo-icon {
+      width: 53%;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        cursor: pointer;
+      }
+      .icon {
+        width: 30px;
+      }
+    }
+  }
+  .input-code {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    #codev {
+      width: 30%;
+      height: 50px;
+      border-radius: 12px;
+      font-size: 30px;
+      color: #575757;
+      padding-left: 10px;
+    }
+    p {
+      color: #575757;
+      font-size: 12px;
+      font-family: "Nunito", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      span {
+        text-decoration-line: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  .adv-button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    flex-direction: column;
+    .advance {
+      gap: 0;
+      cursor: pointer;
+      width: 50%;
+      height: 35px;
+      border-radius: 20px;
+      border: 1px solid #2b2d33;
+      background: #0d0d0d;
+      color: #fff;
+      text-align: center;
+      font-family: "Nunito", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+    }
+  }
 `;
