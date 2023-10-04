@@ -48,11 +48,11 @@ function App() {
     <div className="App">
       <Header />
       <InitialSection id="inicio"/>
-      <FadeInSection>
+      {/* <FadeInSection> */}
           <WhoAreSection id="quem_somos"/>
           <OursProductsSection id="produtos"/>
           <ContactSection id="contato"/>
-      </FadeInSection>
+      {/* </FadeInSection> */}
 
       <Footer />
     </div>

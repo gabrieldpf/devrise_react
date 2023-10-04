@@ -24,10 +24,10 @@ export const ContactSectionContainer = styled.section`
         img {
             width: 35%;
             transition: transform 1s;
-        }
 
-        &:hover img {
-            transform: rotateY(180deg);
+            &:hover {
+                transform: rotateY(180deg);
+            }
         }
     }
 
