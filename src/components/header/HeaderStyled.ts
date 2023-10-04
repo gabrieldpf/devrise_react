@@ -184,7 +184,7 @@ export const HeaderComponents = styled.header`
   .modal-container {
     width: 40%;
   }
-  .modal {
+  .modal-login {
     padding: 24px;
     width: 100%;
     color: #0d0d0d;
@@ -199,10 +199,177 @@ export const HeaderComponents = styled.header`
         width: 30px;
       }
     }
-    .enter {
-      width: 40%;
+  }
+  .enter {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    color: #212426;
+    font-family: "Nunito", sans-serif;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 1000;
+    line-height: 36px;
+    p {
+      margin: 20px 0px 10px 0px;
+    }
+  }
+  .text-modal {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    button {
       display: flex;
-      justify-content: flex-end;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      width: 50%;
+      height: 35px;
+      border-radius: 20px;
+      border: 1px solid #2b2d33;
+      background: #0d0d0d;
+      color: #fff;
+      text-align: center;
+      font-family: "Nunito", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+      cursor: pointer;
+
+      img {
+        width: 8%;
+      }
+    }
+  }
+  .or {
+    position: relative;
+    width: 50%;
+    color: #212426;
+    text-align: center;
+    margin-left: 25%;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45%;
+      height: 1px;
+      background-color: #4a4a4a;
+    }
+    &:before {
+      left: 0;
+    }
+    &:after {
+      right: 0;
+    }
+  }
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px 10px 0px;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    input {
+      border: 1px solid #777;
+      width: 53%;
+      height: 50px;
+      border-radius: 8px;
+      font-family: "Nunito", sans-serif;
+      padding-left: 5px;
+      font-size: 15px;
+      appearance: textfield;
+
+      &:focus {
+        outline: none;
+        border: 2px solid #777;
+      }
+    }
+  }
+  .buttons {
+    display: inline-flex;
+    width: 100%;
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    .next {
+      cursor: pointer;
+      width: 50%;
+      height: 35px;
+      border-radius: 20px;
+      border: 1px solid #2b2d33;
+      background: #0d0d0d;
+      color: #fff;
+      text-align: center;
+      font-family: "Nunito", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+    }
+    .forgot {
+      width: 50%;
+      height: 35px;
+      cursor: pointer;
+      border-radius: 20px;
+      border: 1px solid #2b2d33;
+      background: #fff;
+      color: #0d0d0d;
+      text-align: center;
+      font-family: "Nunito", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+    }
+  }
+  .sign-up-text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin: 0;
+      color: #575757;
+      font-family: "Nunito", sans-serif;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      span {
+        text-decoration: underline;
+        cursor: pointer;
+        padding-left: 2px;
+      }
+    }
+  }
+  .modal-signup {
+    padding: 24px;
+    width: 100%;
+    color: #0d0d0d;
+    .logo-icon {
+      width: 53%;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        cursor: pointer;
+      }
+      .icon {
+        width: 30px;
+      }
+    }
+    .sign-up {
+      width: 100%;
+      display: flex;
+      justify-content: center;
       color: #212426;
       font-family: "Nunito", sans-serif;
       font-size: 31px;
@@ -210,143 +377,110 @@ export const HeaderComponents = styled.header`
       font-weight: 1000;
       line-height: 36px;
       p {
-        margin: 20px 0px 10px 0px;
+        margin: 10px 0px 10px 0px;
       }
     }
-    .text-modal {
-      display: flex;
-      width: 100%;
-      height: 100px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      flex-shrink: 0;
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        width: 50%;
-        height: 35px;
-        border-radius: 20px;
-        border: 1px solid #2b2d33;
-        background: #0d0d0d;
-        color: #fff;
-        text-align: center;
-        font-family: "Nunito", sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.25px;
-        cursor: pointer;
-
-        img {
-          width: 8%;
-        }
-      }
+  }
+  .date-text {
+    width: 78%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25%;
+    padding-top: 2%;
+    h1 {
+      font-family: "Nunito", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      margin: 0;
     }
-    .or {
-      position: relative;
-      width: 50%;
-      color: #212426;
-      text-align: center;
-      margin-left: 25%;
-
-      &:before,
-      &:after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 45%;
-        height: 1px;
-        background-color: #4a4a4a;
-      }
-      &:before {
-        left: 0;
-      }
-      &:after {
-        right: 0;
-      }
+    p {
+      font-family: "Nunito", sans-serif;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      margin-top: 2px;
     }
-    .inputs {
-      display: flex;
-      flex-direction: column;
-      padding: 20px 0px 10px 0px;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-      input {
-        border: 1px solid #777;
-        width: 53%;
+  }
+  .date {
+    width: 100%;
+    display: flex;
+    gap: 0.2rem;
+    justify-content: center;
+    .mounth {
+      select {
+        width: 70px;
         height: 50px;
-        border-radius: 8px;
-        font-family: "Nunito", sans-serif;
-        padding-left: 5px;
-        font-size: 15px;
-
-        &:focus {
-          outline: none;
-          border: 2px solid #777;
-        }
-      }
-    }
-    .buttons {
-      display: inline-flex;
-      width: 100%;
-      height: 100px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      flex-shrink: 0;
-      .next {
-        cursor: pointer;
-        width: 50%;
-        height: 35px;
-        border-radius: 20px;
-        border: 1px solid #2b2d33;
-        background: #0d0d0d;
-        color: #fff;
-        text-align: center;
-        font-family: "Nunito", sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.25px;
-      }
-      .forgot {
-        width: 50%;
-        height: 35px;
-        cursor: pointer;
-        border-radius: 20px;
-        border: 1px solid #2b2d33;
-        background: #fff;
-        color: #0d0d0d;
-        text-align: center;
-        font-family: "Nunito", sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.25px;
-      }
-    }
-    .sign-up {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p {
-        margin: 0;
         color: #575757;
         font-family: "Nunito", sans-serif;
         font-size: 15px;
         font-style: normal;
         font-weight: 400;
-        line-height: 20px;
-        span {
-          text-decoration: underline;
-          cursor: pointer;
-        }
+        line-height: 24px;
+        border-radius: 12px;
+        border: 2px solid #575757;
       }
     }
+    .day {
+      select {
+        width: 50px;
+        height: 50px;
+        color: #575757;
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        border-radius: 12px;
+        border: 2px solid #575757;
+      }
+    }
+    .year {
+      select {
+        width: 70px;
+        height: 50px;
+        color: #575757;
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        border-radius: 12px;
+        border: 2px solid #575757;
+      }
+    }
+  }
+  .button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    .advance {
+      gap: 0;
+      cursor: pointer;
+      width: 50%;
+      height: 35px;
+      border-radius: 20px;
+      border: 1px solid #2b2d33;
+      background: #0d0d0d;
+      color: #fff;
+      text-align: center;
+      font-family: "Nunito", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+    }
+  }
+  .date-selected {
+    p {
+      margin: 8px;
+    }
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 `;

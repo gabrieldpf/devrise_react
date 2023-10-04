@@ -6,6 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { DynamicModal } from "../dynamic-modal/DynamicModal";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import InputMask from "react-input-mask";
 
 export const Header = ({ ...props }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,8 @@ export const Header = ({ ...props }: NavBarProps) => {
   const [isActive, setIsActive] = useState(0);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
+
+  const years = Array.from({ length: 101 }, (_, i) => 1923 + i);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,7 +36,7 @@ export const Header = ({ ...props }: NavBarProps) => {
         onClose={() => setOpenLoginModal(false)}
         variant="customized"
       >
-        <div className="modal">
+        <div className="modal-login">
           <div className="logo-icon">
             <ArrowBackOutlinedIcon
               className="left"
@@ -50,9 +53,8 @@ export const Header = ({ ...props }: NavBarProps) => {
               Entrar com o Google
             </button>
             <button>
-              {" "}
               <img src={apple_icon} alt="" />
-              Entrar com a Apple{" "}
+              Entrar com a Apple
             </button>
           </div>
           <div className="or">ou</div>
@@ -64,7 +66,7 @@ export const Header = ({ ...props }: NavBarProps) => {
             <button className="next">Proximo</button>
             <button className="forgot">Esqueceu a senha?</button>
           </div>
-          <div className="sign-up">
+          <div className="sign-up-text">
             <p>
               Não tem uma conta?
               <span
@@ -84,7 +86,95 @@ export const Header = ({ ...props }: NavBarProps) => {
         open={openSignUpModal}
         onClose={() => setOpenSignUpModal(false)}
         variant="customized"
-      ></DynamicModal>
+      >
+        <div className="modal-signup">
+          <div className="logo-icon">
+            <ArrowBackOutlinedIcon
+              className="left"
+              onClick={() => setOpenLoginModal(false)}
+            />
+            <img src={logo} alt="" className="icon" />
+          </div>
+          <div className="sign-up">
+            <p>Cadastro</p>
+          </div>
+          <div className="text-modal">
+            <button>
+              <img src={google_icon} alt="" />
+              Cadastre-se com o Google
+            </button>
+            <button>
+              <img src={apple_icon} alt="" />
+              Cadastre-se com a Apple
+            </button>
+          </div>
+          <div className="or">ou</div>
+          <div className="inputs">
+            <input type="text" placeholder="Nome" />
+            <InputMask
+              mask="+55 (99) 99999-9999"
+              placeholder="(00) 90000-0000"
+              id="telefone"
+              name="telefone"
+              type="tel"
+            />
+          </div>
+          <div className="date-text">
+            <h1>Data de Nascimento</h1>
+            <p>
+              Isso não será exibido publicamente. Confirme sua própria idade.
+            </p>
+          </div>
+          <div className="date">
+            <div className="day">
+              <select>
+                <option value="">Dia</option>
+                {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mounth">
+              <select>
+                <option value="">Mês</option>
+                {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="year">
+              <select className="custom-select">
+                <option value="">Ano</option>
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="button">
+            <button className="advance">Avançar</button>
+          </div>
+          <div className="sign-up-text">
+            <p>
+              Já tem uma conta?
+              <span
+                onClick={() => {
+                  setOpenSignUpModal(false);
+                  setOpenLoginModal(true);
+                }}
+              >
+                Entre!
+              </span>
+            </p>
+          </div>
+        </div>
+      </DynamicModal>
       <img src={logoEscrita} alt="" />
       <nav>
         <ul>
