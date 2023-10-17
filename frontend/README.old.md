@@ -1,1 +1,0 @@
-# devrise_react
