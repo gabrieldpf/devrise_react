@@ -13,7 +13,51 @@ export const HeaderComponents = styled.header`
     width: 120px;
     margin: 0;
   }
-
+  .logado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 15px;
+    border: solid 1.5px white;
+    padding: 0px 10px;
+    cursor: pointer;
+    .icon-logado {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .cadastro-modal {
+    .modal-container {
+      width: 39%;
+    }
+  }
+  .confirm {
+    .modal-container {
+      width: 25%;
+    }
+  }
+  .logout {
+    .modal-container {
+      width: 10%;
+      .divIcon {
+        background-color: lightgrey;
+        display: flex;
+        height: 10vh;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        .click {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.3rem;
+        }
+      }
+    }
+  }
   ul {
     padding: 0;
     display: flex;
@@ -38,7 +82,15 @@ export const HeaderComponents = styled.header`
       font-family: "Nunito", sans-serif;
     }
   }
-
+  .errors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .error {
+      font-size: 12px;
+      color: red;
+    }
+  }
   .button-container {
     display: flex;
     align-content: center;

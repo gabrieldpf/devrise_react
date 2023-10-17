@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeaderComponents } from "./HeaderStyled";
 import { NavBarProps } from "../../types";
 import { logo, logoEscrita, apple_icon, google_icon } from "../assets";
@@ -8,6 +8,11 @@ import { DynamicModal } from "../dynamic-modal/DynamicModal";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import InputMask from "react-input-mask";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { userInfo } from "os";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 export const Header = ({ ...props }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +23,21 @@ export const Header = ({ ...props }: NavBarProps) => {
   const [openCodeVModal, setOpenCodeVModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [user, setUser] = useState<Record<string, any> | null>(null);
+  const [openLogoutModal, setOpenLogoutModal] = useState(false);
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
 
   const years = Array.from({ length: 101 }, (_, i) => 1923 + i);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
     setIsIconRotated(!isIconRotated);
+  };
+
+  const ClickLogout = () => {
+    Cookies.remove("user_infos");
+    window.location.reload();
   };
 
   const pages = [
@@ -37,22 +51,72 @@ export const Header = ({ ...props }: NavBarProps) => {
     e.preventDefault();
 
     try {
+      console.log(email, password);
       const response = await axios.post(
-        "https://localhost:3000/login",
+        "http://localhost:3000/login",
         JSON.stringify({ email, password }),
         {
           headers: { "Content-Type": "application/json" },
         }
       );
-    } catch (error) {
-      console.error("Erro de rede:", error);
+
+      Cookies.set("user_infos", JSON.stringify(response.data), {
+        expires: 5,
+      });
+
+      setOpenLoginModal(false);
+      window.location.reload();
+    } catch (error: any) {
+      console.log(error);
+      if (!error?.response) {
+        setError("Erro ao acessar o servidor");
+      } else if (error.response.status === 401) {
+        setError("Usuário ou senha inválidos");
+      }
     }
-
-    console.log(email, password);
   };
-
+  useEffect(() => {
+    const userInfos = Cookies.get("user_infos")!;
+    if (userInfos) {
+      setUser(JSON.parse(userInfos));
+    }
+  }, []);
   return (
     <HeaderComponents>
+      <DynamicModal
+        open={openConfirmModal}
+        onClose={() => setOpenConfirmModal(false)}
+        variant="notify"
+        btnConfirmClick={ClickLogout}
+        title="Tem certeza que deseja sair da conta?"
+        buttonCancel="Cancelar"
+        buttonConfirm="Sair"
+        icon={<ExitToAppIcon />}
+        iconColors={["#D92D20", "#FEF3F2", "#FEE4E2"]}
+        className="confirm"
+      />
+
+      <DynamicModal
+        open={openLogoutModal}
+        onClose={() => setOpenLogoutModal(false)}
+        variant="customized"
+        className="logout"
+      >
+        <div className="container">
+          <div className="divIcon">
+            <div
+              className="click"
+              onClick={() => {
+                setOpenLogoutModal(false);
+                setOpenConfirmModal(true);
+              }}
+            >
+              <LogoutOutlinedIcon className="sidebar-icon" />
+              <span className="nav-text">Sair</span>
+            </div>
+          </div>
+        </div>
+      </DynamicModal>
       <DynamicModal
         open={openLoginModal}
         onClose={() => setOpenLoginModal(false)}
@@ -94,6 +158,9 @@ export const Header = ({ ...props }: NavBarProps) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <div className="errors">
+            <span className="error">{error}</span>
+          </div>
           <div className="buttons">
             <button className="next" onClick={(e) => hanldeLogin(e)}>
               Login
@@ -115,11 +182,11 @@ export const Header = ({ ...props }: NavBarProps) => {
           </div>
         </div>
       </DynamicModal>
-
       <DynamicModal
         open={openSignUpModal}
         onClose={() => setOpenSignUpModal(false)}
         variant="customized"
+        className="cadastro-modal"
       >
         <div className="modal-signup">
           <div className="logo-icon">
@@ -282,14 +349,21 @@ export const Header = ({ ...props }: NavBarProps) => {
             })}
         </ul>
       </nav>
-      <div className="button-container">
-        <button className="login" onClick={() => setOpenLoginModal(true)}>
-          login
-        </button>
-        <button className="cadastro" onClick={() => setOpenSignUpModal(true)}>
-          cadastro
-        </button>
-      </div>
+      {user == null ? (
+        <div className="button-container">
+          <button className="login" onClick={() => setOpenLoginModal(true)}>
+            login
+          </button>
+          <button className="cadastro" onClick={() => setOpenSignUpModal(true)}>
+            cadastro
+          </button>
+        </div>
+      ) : (
+        <div className="logado" onClick={() => setOpenLogoutModal(true)}>
+          <AccountCircleOutlinedIcon className="icon-logado" />
+          <p>{user.name}</p>
+        </div>
+      )}
       <div className="person-area">
         <div className="icons" onClick={toggleDropdown}>
           <CloseIcon style={!isIconRotated ? { display: "none" } : {}} />
