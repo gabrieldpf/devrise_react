@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { DynamicModalTypes } from '../types'
 import { StyledDynamicModal, StyledStandardModal } from './DynamicModalStyle'
-import CloseIcon from '@mui/icons-material/Close';/*
-import { Button } from '../buttons'; */
+import CloseIcon from '@mui/icons-material/Close';
 
 
 export const DynamicModal = ({...props}: DynamicModalTypes) => {
@@ -47,24 +46,22 @@ export const DynamicModal = ({...props}: DynamicModalTypes) => {
                             {props.description}
                         </label>
                         <div className='buttons'>
-                           {/*  {props.buttonCancel &&
-                             <Button
-                                    variant="notify"
+                             {props.buttonCancel &&
+                             <button
                                     className='btn-cancel'
                                     onClick={props.onClose}
                                 >
                                     {props.buttonCancel}
-                                </Button>
+                                </button>
                             }
                             {props.buttonConfirm &&
-                                <Button
-                                    variant="login"
+                                <button
                                     className='btn-confirm'
                                     onClick={props.btnConfirmClick}
                                 >
                                     {props.buttonConfirm}
-                                </Button>
-                            } */}
+                                </button>
+                            }
                         </div>
                     </StyledStandardModal>
                 )

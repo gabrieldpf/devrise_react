@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeaderComponents } from "./HeaderStyled";
 import { NavBarProps } from "../../types";
 import { logo, logoEscrita, apple_icon, google_icon } from "../assets";
@@ -7,6 +7,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import { DynamicModal } from "../dynamic-modal/DynamicModal";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import InputMask from "react-input-mask";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { userInfo } from "os";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 export const Header = ({ ...props }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,12 +21,23 @@ export const Header = ({ ...props }: NavBarProps) => {
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
   const [openCodeVModal, setOpenCodeVModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [user, setUser] = useState<Record<string, any> | null>(null);
+  const [openLogoutModal, setOpenLogoutModal] = useState(false);
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
 
   const years = Array.from({ length: 101 }, (_, i) => 1923 + i);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
     setIsIconRotated(!isIconRotated);
+  };
+
+  const ClickLogout = () => {
+    Cookies.remove("user_infos");
+    window.location.reload();
   };
 
   const pages = [
@@ -30,8 +47,76 @@ export const Header = ({ ...props }: NavBarProps) => {
     { text: "contato", url: "#contato" },
   ];
 
+  const hanldeLogin = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      console.log(email, password);
+      const response = await axios.post(
+        "http://localhost:3000/login",
+        JSON.stringify({ email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      Cookies.set("user_infos", JSON.stringify(response.data), {
+        expires: 5,
+      });
+
+      setOpenLoginModal(false);
+      window.location.reload();
+    } catch (error: any) {
+      console.log(error);
+      if (!error?.response) {
+        setError("Erro ao acessar o servidor");
+      } else if (error.response.status === 401) {
+        setError("Usuário ou senha inválidos");
+      }
+    }
+  };
+  useEffect(() => {
+    const userInfos = Cookies.get("user_infos")!;
+    if (userInfos) {
+      setUser(JSON.parse(userInfos));
+    }
+  }, []);
   return (
     <HeaderComponents>
+      <DynamicModal
+        open={openConfirmModal}
+        onClose={() => setOpenConfirmModal(false)}
+        variant="notify"
+        btnConfirmClick={ClickLogout}
+        title="Tem certeza que deseja sair da conta?"
+        buttonCancel="Cancelar"
+        buttonConfirm="Sair"
+        icon={<ExitToAppIcon />}
+        iconColors={["#D92D20", "#FEF3F2", "#FEE4E2"]}
+        className="confirm"
+      />
+
+      <DynamicModal
+        open={openLogoutModal}
+        onClose={() => setOpenLogoutModal(false)}
+        variant="customized"
+        className="logout"
+      >
+        <div className="container">
+          <div className="divIcon">
+            <div
+              className="click"
+              onClick={() => {
+                setOpenLogoutModal(false);
+                setOpenConfirmModal(true);
+              }}
+            >
+              <LogoutOutlinedIcon className="sidebar-icon" />
+              <span className="nav-text">Sair</span>
+            </div>
+          </div>
+        </div>
+      </DynamicModal>
       <DynamicModal
         open={openLoginModal}
         onClose={() => setOpenLoginModal(false)}
@@ -60,11 +145,31 @@ export const Header = ({ ...props }: NavBarProps) => {
           </div>
           <div className="or">ou</div>
           <div className="inputs">
-            <input type="text" placeholder="Telefone ou e-mail" />
-            <input type="password" placeholder="Sua senha" />
+            <input
+              required
+              type="text"
+              placeholder="Telefone ou e-mail"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              required
+              type="password"
+              placeholder="Sua senha"
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  hanldeLogin(e);
+                }
+              }}
+            />
+          </div>
+          <div className="errors">
+            <span className="error">{error}</span>
           </div>
           <div className="buttons">
-            <button className="next">Proximo</button>
+            <button className="next" onClick={(e) => hanldeLogin(e)}>
+              Login
+            </button>
             <button className="forgot">Esqueceu a senha?</button>
           </div>
           <div className="sign-up-text">
@@ -82,11 +187,11 @@ export const Header = ({ ...props }: NavBarProps) => {
           </div>
         </div>
       </DynamicModal>
-
       <DynamicModal
         open={openSignUpModal}
         onClose={() => setOpenSignUpModal(false)}
         variant="customized"
+        className="cadastro-modal"
       >
         <div className="modal-signup">
           <div className="logo-icon">
@@ -249,14 +354,21 @@ export const Header = ({ ...props }: NavBarProps) => {
             })}
         </ul>
       </nav>
-      <div className="button-container">
-        <button className="login" onClick={() => setOpenLoginModal(true)}>
-          login
-        </button>
-        <button className="cadastro" onClick={() => setOpenSignUpModal(true)}>
-          cadastro
-        </button>
-      </div>
+      {user == null ? (
+        <div className="button-container">
+          <button className="login" onClick={() => setOpenLoginModal(true)}>
+            login
+          </button>
+          <button className="cadastro" onClick={() => setOpenSignUpModal(true)}>
+            cadastro
+          </button>
+        </div>
+      ) : (
+        <div className="logado" onClick={() => setOpenLogoutModal(true)}>
+          <AccountCircleOutlinedIcon className="icon-logado" />
+          <p>{user.name}</p>
+        </div>
+      )}
       <div className="person-area">
         <div className="icons" onClick={toggleDropdown}>
           <CloseIcon style={!isIconRotated ? { display: "none" } : {}} />

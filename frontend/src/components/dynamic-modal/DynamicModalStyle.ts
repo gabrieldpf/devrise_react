@@ -13,10 +13,11 @@ export const StyledDynamicModal = styled.div`
   align-items: center;
 
   .modal-container {
-    background-color: #FCFCFC;
+    background-color: #fcfcfc;
     min-width: 10vw;
     min-height: 10vh;
     border-radius: 16px;
+    width: 35%;
   }
 `;
 
@@ -24,9 +25,10 @@ export const StyledStandardModal = styled.div<{
   confirmBackgroundColor?: string;
   iconColors?: string[];
 }>`
-  width: 50vh;
+  width: 100%;
   min-height: 20vh;
   padding: 1rem;
+  border-radius: 15px;
 
   .div-icons {
     width: 100%;
@@ -72,28 +74,34 @@ export const StyledStandardModal = styled.div<{
   .buttons {
     display: flex;
     gap: 0.5rem;
+    flex-direction: row;
 
     .btn-confirm {
       margin-top: 1rem;
-      text-transform: none;
-      font-family: "Nunito", sans-serif;
-      letter-spacing: 0.5px;
-      background-color:blue;
+      font-family: "Nunito sans", sans-serif;
+      background-color: #d92d20;
       border: none;
+      border-radius: 10px;
+      width: 100px;
+      height: 40px;
+      cursor: pointer;
+      color: white;
+      font-size: 15px;
     }
 
     .btn-cancel {
-      letter-spacing: 0px;
       margin-top: 1rem;
-      text-transform: none;
       font-family: "Nunito", sans-serif;
-      background-color: #fcfcfc;
-      color: #737373;
-      border: red;
+      border: none;
+      border-radius: 10px;
+      width: 100px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 15px;
     }
   }
 
-  @media (max-width: 1000px) {
+  /*  @media (max-width: 1000px) {
     min-width: 48vw;
     max-width: 80vw;
     min-height: 35vh;
@@ -105,5 +113,5 @@ export const StyledStandardModal = styled.div<{
         margin-top: 0;
       }
     }
-  }
+  } */
 `;
