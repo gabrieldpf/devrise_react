@@ -156,6 +156,11 @@ export const Header = ({ ...props }: NavBarProps) => {
               type="password"
               placeholder="Sua senha"
               onChange={(e) => setPassword(e.target.value)}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  hanldeLogin(e);
+                }
+              }}
             />
           </div>
           <div className="errors">
